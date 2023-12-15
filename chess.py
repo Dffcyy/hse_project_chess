@@ -350,10 +350,7 @@ def check_valid_moves():
     Нет выходных данных.
 """
 def draw_valid(moves):
-    if turn_step < 2:
-        color = 'red'
-    else:
-        color = 'red'
+    color = 'red'
     for i in range(len(moves)):
         pygame.draw.circle(screen, color, (moves[i][0] * 80 + 40, moves[i][1] * 80 + 40), 5)
 
