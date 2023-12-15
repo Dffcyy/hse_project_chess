@@ -148,10 +148,13 @@ def check_all_moves(pieces,locations,color):
 """
 def check_pawn(position,color):
     moves = []
+    count = 0
     if color == 'white':
         if (position[0], position[1] + 1) not in white_locations and (position[0], position[1] + 1) not in black_locations and position[1] < 7:
             moves.append((position[0], position[1] + 1))
-        if (position[0], position[1] + 2) not in white_locations and (position[0], position[1] + 2) not in black_locations and position[1] == 1:
+        if (position[0], position[1] + 1) in white_locations:
+            count += 1
+        if (position[0], position[1] + 2) not in white_locations and (position[0], position[1] + 2) not in black_locations and position[1] == 1 and count == 0:
             moves.append((position[0], position[1] + 2))
         if (position[0] + 1, position[1] + 1) in black_locations:
             moves.append((position[0] + 1, position[1] + 1))
@@ -160,13 +163,16 @@ def check_pawn(position,color):
     else:
         if (position[0], position[1] - 1) not in white_locations and (position[0], position[1] - 1) not in black_locations and position[1] > 0:
             moves.append((position[0], position[1] - 1))
-        if (position[0], position[1] - 2) not in white_locations and (position[0], position[1] - 2) not in black_locations and position[1] == 6:
+        if (position[0], position[1] - 1) in black_locations:
+            count += 1
+        if (position[0], position[1] - 2) not in white_locations and (position[0], position[1] - 2) not in black_locations and position[1] == 6 and count == 0:
             moves.append((position[0], position[1] - 2))
         if (position[0] - 1, position[1] - 1) in white_locations:
             moves.append((position[0] - 1, position[1] - 1))
         if (position[0] + 1, position[1] - 1) in white_locations:
             moves.append((position[0] + 1, position[1] - 1))
     return moves
+
 
 """
     Проверяет возможные ходы для ладьи.
